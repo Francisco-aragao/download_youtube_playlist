@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "youtube-dl-exec": "^3.0.20",
+    "ytdl-core": "^4.11.5",
+    "ytdl-mp3": "^5.2.2"
+  }
+}

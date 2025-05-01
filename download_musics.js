@@ -1,21 +1,26 @@
+const youtubedl = require('youtube-dl-exec');
+const fs = require('fs');
+const path = require('path');
 
-
-const { Downloader } = require('ytdl-mp3');
-
-async function main() {
-  const downloader = new Downloader({
-    getTags: false,
-    verifyTags: false,
-    outputDir: // outputDirectory 
-  });
 
   musics = [// insert musics here
+    
     ]
 
-  for (music of musics) {
-      await downloader.downloadSong(music);
-      console.log('Downloaded:', music);
-  }
-}
-
-main();
+    async function main() {
+      for (const music of musics) {
+        const output = path.join(__dirname, 'downloads', '%(title)s.%(ext)s');
+        try {
+          await youtubedl(music, {
+            extractAudio: true,
+            audioFormat: 'mp3',
+            output,
+          });
+          console.log('Downloaded:', music);
+        } catch (err) {
+          console.error('Failed to download:', music, err.message);
+        }
+      }
+    }
+    
+    main();
